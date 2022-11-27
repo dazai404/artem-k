@@ -1,18 +1,18 @@
 package main
 
 import (
+	"github.com/dazai404/artem-k/internal/api/repository/mysql"
 	"log"
 
 	"github.com/dazai404/artem-k/internal/api"
-	"github.com/dazai404/artem-k/internal/api/repository"
 )
 
-func main()  {
-	db, err := repository.NewMySQLRepo()
+func main() {
+	db, err := mysql.NewMySQLRepo()
 	if err != nil {
 		log.Fatal(err)
 	}
-    defer db.Close()
-	api := api.NewAPI(db)
-    log.Fatal(api.Run())
+	app := api.NewAPI(db)
+	defer app.CloseDB(db)
+	log.Fatal(app.Run())
 }

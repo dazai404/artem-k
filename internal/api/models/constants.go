@@ -1,6 +1,6 @@
 package models
 
 const (
-	RoleManager = "manager"
+	RoleManager  = "manager"
 	RoleConsumer = "consumer"
 )
